@@ -1,0 +1,76 @@
+<h1 mat-dialog-title>Add Information</h1>
+<form [formGroup]="informationForm">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Username</mat-label>
+        <input formControlName="Username" matInput type="text" placeholder="Enter Name">
+    </mat-form-field>
+
+    <span class="error"
+        *ngIf="informationForm.get('Username')?.touched && informationForm.get('Username')?.hasError('pattern')">Only
+        Alphabets Allowed
+    </span>
+    <span class="error"
+        *ngIf="informationForm.get('Username')?.touched && informationForm.get('Username')?.hasError('required')">Username
+        is Required</span>
+    <span class="error"
+        *ngIf="informationForm.get('Username')?.touched && informationForm.get('Username')?.hasError('maxlength')">
+        Name must be less than 10 characters long. </span>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input formControlName="Email" matInput type="email" placeholder="Enter Email">
+    </mat-form-field>
+
+    <span class="error"
+        *ngIf="informationForm.get('Email')?.touched && informationForm.get('Email')?.hasError('pattern')">xyz@xyx.com
+        is correct pattern
+    </span>
+    <span class="error"
+        *ngIf="informationForm.get('Email')?.touched && informationForm.get('Email')?.hasError('required')">Email
+        is Required</span>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Address</mat-label>
+        <input formControlName="Address" matInput type="text" placeholder="Enter Address">
+    </mat-form-field>
+
+    <span class="error"
+        *ngIf="informationForm.get('Address')?.touched && informationForm.get('Address')?.hasError('maxlength')">
+        Address must be less than 20 characters long. </span>
+    <span class="error"
+        *ngIf="informationForm.get('Address')?.touched && informationForm.get('Address')?.hasError('required')">Address
+        is Required</span>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input formControlName="Password" matInput type="text" placeholder="Enter Password">
+    </mat-form-field>
+
+    <span class="error"
+        *ngIf="informationForm.get('Password')?.touched && informationForm.get('Password')?.hasError('pattern')">Must
+        contain at least one uppercase and lowercase letter, and at least 8 or more characters
+    </span>
+    <span class="error"
+        *ngIf="informationForm.get('Password')?.touched && informationForm.get('Password')?.hasError('required')">Password
+        is Required</span>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Role</mat-label>
+        <mat-select required formControlName="Role">
+            <mat-option *ngFor="let role of roles" [value]="role.name">
+                {{role.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <span class="error"
+        *ngIf="informationForm.get('Role')?.touched && informationForm.get('Role')?.hasError('required')">Role
+        is Required</span>
+
+</form>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="primary" [disabled]="!informationForm.valid"
+        (click)="addData()">{{actionBtn}}</button>
+    <button style="margin-left: 10px;" mat-raised-button color="warn" mat-dialog-close>Close</button>
+</div>

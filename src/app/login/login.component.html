@@ -1,0 +1,41 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title>Log in</mat-card-title>
+        </mat-card-header>
+        <form class="example-form" action="http://localhost:8000/userData/" method="post" [formGroup]="loginForm"
+            (ngSubmit)="login()">
+            <mat-card-content>
+                <mat-form-field class="example-full-width">
+                    <input formControlName="Email" matInput type="text" placeholder="Email Address" #u1 />
+                </mat-form-field>
+
+                <span class="error"
+                    *ngIf="loginForm.get('Email')?.touched && loginForm.get('Email')?.hasError('pattern')">xyz@xyx.com
+                    is correct pattern
+                </span>
+                <span class="error"
+                    *ngIf="loginForm.get('Email')?.touched && loginForm.get('Email')?.hasError('required')">Email
+                    is Required</span>
+
+                <mat-form-field class="example-full-width">
+                    <input formControlName="Password" matInput type="password" placeholder="Password" #p2>
+                </mat-form-field>
+
+                <span class="error"
+                    *ngIf="loginForm.get('Password')?.touched && loginForm.get('Password')?.hasError('required')">Password
+                    is Required</span>
+
+            </mat-card-content>
+            <button mat-raised-button color="warn" class="btn-block">Log in</button>
+        </form>
+    </mat-card>
+</div>
+<!-- <mat-card class="box">
+    <mat-card-header>
+        <mat-card-title>Login Page</mat-card-title>
+    </mat-card-header>
+    <button class="btn" mat-raised-button color="warn" (click)="login(Role.User)">Login as User</button>
+    <br>
+    <button class="btn" mat-raised-button color="warn" (click)="login(Role.Admin)">Login as Admi</button>
+</mat-card> -->
